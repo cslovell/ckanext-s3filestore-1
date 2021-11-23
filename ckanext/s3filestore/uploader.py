@@ -287,6 +287,7 @@ class S3ResourceUploader(BaseS3Uploader):
         Create a storage path in the format:
         <ckanext.s3filestore.aws_storage_path>/resources/
         '''
+        log.info('The request object is: {0}'.format(resource))
 
         super(S3ResourceUploader, self).__init__()
 
