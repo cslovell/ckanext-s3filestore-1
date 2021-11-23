@@ -287,10 +287,8 @@ class S3ResourceUploader(BaseS3Uploader):
         Create a storage path in the format:
         <ckanext.s3filestore.aws_storage_path>/resources/
         '''
-        log.info('The request object is: {0}'.format(resource))
-
         super(S3ResourceUploader, self).__init__()
-
+        self.res = resource
         path = config.get('ckanext.s3filestore.aws_storage_path', '')
         self.storage_path = os.path.join(path, 'resources')
         self.filename = None
@@ -367,7 +365,7 @@ class S3ResourceUploader(BaseS3Uploader):
 
     def upload(self, id, max_size=10):
         '''Upload the file to S3.'''
-
+        log.info('The request object is: {0}'.format(self.res))
         # If a filename has been provided (a file is being uploaded) write the
         # file to the appropriate key in the AWS bucket.
         if self.filename:
